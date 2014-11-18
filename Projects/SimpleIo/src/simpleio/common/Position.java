@@ -1,7 +1,7 @@
 package simpleio.common;
 
 public class Position {
-private int x, y;
+	private final int x, y;
 	
 	public Position(int x, int y){
 		this.x = x;
@@ -12,16 +12,8 @@ private int x, y;
 		return x;
 	}
 	
-	public void setX(int x){
-		this.x = x;
-	}
-	
 	public int getY(){
 		return y;
-	}
-	
-	public void setY(int y){
-		this.y = y;
 	}
 	
 	public Position addY(int y){
@@ -60,7 +52,7 @@ private int x, y;
 		return facingDirection;
 	}
 	
-	public Position translatePosition(Direction d, int amount){
+	public Position translate(Direction d, int amount){
 		if(d.equals(Direction.up)){
 			return addY(-amount);
 		}else if(d.equals(Direction.down)){

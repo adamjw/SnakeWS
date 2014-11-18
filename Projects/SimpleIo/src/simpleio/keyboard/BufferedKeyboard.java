@@ -38,6 +38,11 @@ public class BufferedKeyboard {
 		}		
 	}
 	
+	/**
+	 * Returns the list of keys that have been pressed. The list is sorted from the oldest key press to newest ones.
+	 * 
+	 * @return
+	 */
 	public List<Integer> getKeyEvents(){
 		return keyEvents;
 	}

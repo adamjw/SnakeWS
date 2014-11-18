@@ -139,6 +139,7 @@ public class SnakeGame {
 			gameInfoController.incrementFrame(gameInfo);
 
 			if (gameInfo.getFrame() % gameInfo.getFramesPerMove() == 0) {
+				//TODO: add controller calls here
 				bufferedKeyboard.clear();
 			}			
 		}

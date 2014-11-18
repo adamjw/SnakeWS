@@ -93,14 +93,14 @@ public class Window {
 	}
 	
 	
-	public void drawRectangle(Colour colour, Point bottomLeft, Point upperRight){
+	public void drawRectangle(Colour colour, Point topLeft, Point bottomRight){
 		setColour(colour);
 		glBegin(GL_QUADS);
 		{
-			glVertex2f(bottomLeft.getX(), bottomLeft.getY());
-			glVertex2f(bottomLeft.getX(), upperRight.getY());
-			glVertex2f(upperRight.getX(), upperRight.getY());
-			glVertex2f(upperRight.getX(), bottomLeft.getY());			
+			glVertex2f(topLeft.getX(), topLeft.getY());
+			glVertex2f(topLeft.getX(), bottomRight.getY());
+			glVertex2f(bottomRight.getX(), bottomRight.getY());
+			glVertex2f(bottomRight.getX(), topLeft.getY());			
 		}
 		glEnd();
 	}

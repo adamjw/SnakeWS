@@ -39,12 +39,20 @@ public class Snake {
 		return segments.get(index);
 	}
 	
+	public void setSegment(int index, Position p){
+		this.segments.set(index, p);
+	}
+	
 	public List<Position> getSegments(){
 		return segments;
 	}
 
+	public void setSegments(List<Position> segments){
+		this.segments = segments;
+	}
+	
 	public void addSegment(){
-
+		//TODO
 	}
 
 	public Direction getMovingDirection(){
