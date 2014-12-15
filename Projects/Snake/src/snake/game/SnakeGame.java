@@ -87,10 +87,10 @@ public class SnakeGame {
 	}
 
 	private void initializeState() {
-		fruit = null;
-		board = null;
-		snake = null;
-		gameInfo = null;
+		fruit = new Fruit();
+		board = new Board(NUMBER_OF_CELLS, NUMBER_OF_CELLS);
+		snake = new Snake(Direction.right, new Position(0,0), 1);
+		gameInfo = new GameInfo("THIS IS SNAKE", FRAMES_PER_MOVE);
 	}
 
 	private void initializeDrawers() {
