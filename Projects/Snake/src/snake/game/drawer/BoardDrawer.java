@@ -19,6 +19,15 @@ public class BoardDrawer {
 	}
 
 	public void drawBoard(Board board) {
+		for(int i=0; i<board.getNumberOfColumns()+1; i++) {
+			window.drawLine(Colour.WHITE, new Point(i * cellSize + topLeft.getX(),topLeft.getY()), new Point(i * cellSize + topLeft.getX(),window.getHeight()));
+			}
+		for(int i=0; i<board.getNumberOfRows()+1; i++) {
+			window.drawLine(Colour.WHITE,  new Point(topLeft.getX(),i * cellSize + topLeft.getY()), new Point(window.getWidth(), i * cellSize + topLeft.getY()));
+		}
+		
+			
+			
 
 	}
 
