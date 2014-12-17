@@ -19,13 +19,27 @@ public class BoardDrawer {
 	}
 
 	public void drawBoard(Board board) {
+		for (int i = 0; i < board.getNumberOfColumns(); i++) {
+			window.drawLine(
+					Colour.WHITE,
+					topLeft.addXY(i * cellSize, 0),
+					topLeft.addXY(i * cellSize, board.getNumberOfColumns()
+							* cellSize));
+		}
+		for (int i = 0; i < board.getNumberOfRows(); i++) {
+			window.drawLine(
+					Colour.WHITE,
+					topLeft.addXY(0, i * cellSize),
+					topLeft.addXY(board.getNumberOfRows() * cellSize, i
+							* cellSize));
+
+		}
 
 	}
 
 	public void drawSquare(Colour colour, Position p) {
 
 	}
-	
 
 	public void drawTriangle(Colour colour, Direction direction, Position p) {
 
