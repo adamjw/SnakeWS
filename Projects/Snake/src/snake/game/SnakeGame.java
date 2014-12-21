@@ -82,15 +82,14 @@ public class SnakeGame {
 		window = new Window("Snake", WINDOW_WIDTH, WINDOW_HEIGHT);
 		window.display();
 
-		int[] keys = new int[] { Keyboard.KEY_LEFT, Keyboard.KEY_RIGHT, Keyboard.KEY_UP, Keyboard.KEY_DOWN,
-				Keyboard.KEY_SPACE };
+		int[] keys = new int[] { Keyboard.KEY_LEFT, Keyboard.KEY_RIGHT, Keyboard.KEY_UP, Keyboard.KEY_DOWN, Keyboard.KEY_SPACE };
 		bufferedKeyboard = new BufferedKeyboard(keys);
 	}
 
 	private void initializeState() {
 		fruit = new Fruit();
 		board = new Board(NUMBER_OF_CELLS, NUMBER_OF_CELLS);
-		snake = new Snake(Direction.right, new Position(NUMBER_OF_CELLS / 2, NUMBER_OF_CELLS / 2), 1);
+		snake = new Snake(Direction.right, new Position(0,0), 1);
 		gameInfo = new GameInfo("THIS IS SNAKE", FRAMES_PER_MOVE);
 	}
 
@@ -110,8 +109,8 @@ public class SnakeGame {
 	}
 
 	private void gameLoop() {
-		while (!window.isCloseRequested()) {
-			updateLogic();
+		while (!window.isCloseRequested()) {			
+			updateLogic();			
 			updateScreen();
 			window.refresh();
 			bufferedKeyboard.poll();
@@ -119,30 +118,30 @@ public class SnakeGame {
 	}
 
 	private void updateLogic() {
-		// not started state
+		//not started state
 		if (gameInfo.getState() == GameInfo.GameState.NOT_STARTED) {
 			stateController.changeState(bufferedKeyboard, gameInfo);
 		}
 
-		// dead state
+		//dead state
 		if (gameInfo.getState() == GameInfo.GameState.DEAD) {
 			stateController.changeState(bufferedKeyboard, gameInfo);
 		}
 
-		// restarting state
+		//restarting state
 		if (gameInfo.getState() == GameInfo.GameState.RESTARTING) {
 			initializeState();
 			stateController.setState(GameInfo.GameState.NOT_STARTED, gameInfo);
 		}
 
-		// playing state
+		//playing state
 		if (gameInfo.getState().equals(GameInfo.GameState.PLAYING)) {
 			gameInfoController.incrementFrame(gameInfo);
 
 			if (gameInfo.getFrame() % gameInfo.getFramesPerMove() == 0) {
-				// TODO: add controller calls here
+				//TODO: add controller calls here
 				bufferedKeyboard.clear();
-			}
+			}			
 		}
 	}
 
