@@ -7,26 +7,26 @@ public class Fruit {
 
 	private Colour colour;
 	private Position position;
-	
-	public Fruit(){
+
+	public Fruit() {
 		this.colour = Colour.RED;
 		this.position = new Position(0, 0);
 	}
-	
-	public Colour getColour(){
+
+	public Colour getColour() {
 		return colour;
 	}
-	
-	public void setColour(Colour colour){
+
+	public void setColour(Colour colour) {
 		this.colour = colour;
 	}
-	
-	public Position getPosition(){
+
+	public Position getPosition() {
 		return position;
 	}
-	
-	public void setPosition(Position position){
+
+	public void setPosition(Position position) {
 		this.position = position;
 	}
-	
+
 }
