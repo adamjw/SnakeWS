@@ -90,7 +90,7 @@ public class SnakeGame {
 	private void initializeState() {
 		fruit = new Fruit();
 		board = new Board(NUMBER_OF_CELLS, NUMBER_OF_CELLS);
-		snake = new Snake(Direction.right, new Position(NUMBER_OF_CELLS / 2, NUMBER_OF_CELLS / 2), 1);
+		snake = new Snake(Direction.right, new Position(NUMBER_OF_CELLS / 2, NUMBER_OF_CELLS / 2), 3);
 		gameInfo = new GameInfo("THIS IS SNAKE", FRAMES_PER_MOVE);
 	}
 
@@ -140,7 +140,8 @@ public class SnakeGame {
 			gameInfoController.incrementFrame(gameInfo);
 
 			if (gameInfo.getFrame() % gameInfo.getFramesPerMove() == 0) {
-				// TODO: add controller calls here
+				snakeController.updateMovingDirection(bufferedKeyboard, snake);
+				snakeController.move(snake);
 				bufferedKeyboard.clear();
 			}
 		}
