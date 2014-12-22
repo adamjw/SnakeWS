@@ -17,25 +17,27 @@ public class SnakeController {
 
 			Integer lastKeyEvent = keyboard.getKeyEvents().get(keyboard.getKeyEvents().size() - 1);
 
-			if (validDirection(lastKeyEvent, snake)) {
+			if (isValidDirection(lastKeyEvent, snake)) {
 				snake.setMovingDirection(getDirectionForKey(lastKeyEvent));
 			}
 		}
 
 	}
 
-	private boolean validDirection(int keyEvent, Snake snake) {
+	private boolean isValidDirection(int keyEvent, Snake snake) {
 		return snake.getMovingDirection() != getDirectionForKey(keyEvent);
 	}
 
 	public void move(Snake snake) {
 		Position headPosition = snake.getHeadPosition();
 
-		List<Position> new_segments = new ArrayList<Position>();
-		new_segments.add(headPosition.translate(snake.getMovingDirection(), 1));
+		List<Position> newSegments = new ArrayList<Position>();
+		newSegments.add(headPosition.translate(snake.getMovingDirection(), 1));
 
 		for (int i = 1; i < snake.getSegments().size(); i++) {
-			new_segments.add(snake.getSegment(i));
+			newSegments.add(snake.getSegment(i));
+			
+		snake.setSegments(newSegments);
 		}
 
 	}
