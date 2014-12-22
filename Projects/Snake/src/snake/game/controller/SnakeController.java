@@ -19,13 +19,23 @@ public class SnakeController {
 
 			if (isValidDirection(lastKeyEvent, snake)) {
 				snake.setMovingDirection(getDirectionForKey(lastKeyEvent));
+				
 			}
 		}
-
 	}
 
 	private boolean isValidDirection(int keyEvent, Snake snake) {
-		return snake.getMovingDirection() != getDirectionForKey(keyEvent);
+		if (snake.getMovingDirection() == Direction.left) {
+			return snake.getMovingDirection() != Direction.right;
+		} else if (snake.getMovingDirection() == Direction.right) {
+			return snake.getMovingDirection() != Direction.left;
+		} else if (snake.getMovingDirection() == Direction.up) {
+			return snake.getMovingDirection() != Direction.down;
+		} else if (snake.getMovingDirection() == Direction.down) {
+			return snake.getMovingDirection() != Direction.up;
+		} else {
+			return false;
+		}
 	}
 
 	public void move(Snake snake) {
@@ -34,12 +44,11 @@ public class SnakeController {
 		List<Position> newSegments = new ArrayList<Position>();
 		newSegments.add(headPosition.translate(snake.getMovingDirection(), 1));
 
-		for (int i = 1; i < snake.getSegments().size(); i++) {
+		for (int i = 0; i < snake.getSegments().size() - 1; i++) {
 			newSegments.add(snake.getSegment(i));
-			
-		snake.setSegments(newSegments);
 		}
 
+		snake.setSegments(newSegments);
 	}
 
 	private Direction getDirectionForKey(int keyEvent) {
