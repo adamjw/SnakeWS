@@ -67,8 +67,8 @@ public class Snake {
 		return movingDirection;
 	}
 
-	public boolean setMovingDirection(Direction direction) {
-		return true;
+	public void setMovingDirection(Direction direction) {
+		this.movingDirection = direction;
 	}
 
 }

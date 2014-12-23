@@ -25,15 +25,19 @@ public class SnakeController {
 	}
 
 	private boolean isValidDirection(int keyEvent, Snake snake) {
-		if (snake.getMovingDirection() == Direction.left) {
-			return snake.getMovingDirection() != Direction.right;
-		} else if (snake.getMovingDirection() == Direction.right) {
-			return snake.getMovingDirection() != Direction.left;
-		} else if (snake.getMovingDirection() == Direction.up) {
-			return snake.getMovingDirection() != Direction.down;
-		} else if (snake.getMovingDirection() == Direction.down) {
-			return snake.getMovingDirection() != Direction.up;
-		} else {
+		Direction newDirection = getDirectionForKey(keyEvent);
+		if (newDirection != null) {
+			if (snake.getMovingDirection() == Direction.left) {
+				return newDirection != Direction.right;
+			} else if (snake.getMovingDirection() == Direction.right) {
+				return newDirection != Direction.left;
+			} else if (snake.getMovingDirection() == Direction.up) {
+				return newDirection != Direction.down;
+			} else {
+				return newDirection != Direction.up;
+			}
+		}
+		 else {
 			return false;
 		}
 	}
