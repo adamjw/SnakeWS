@@ -15,17 +15,17 @@ public class SnakeController {
 	public void updateMovingDirection(BufferedKeyboard keyboard, Snake snake) {
 		if (keyboard.getKeyEvents().size() != 0) {
 
-			Integer lastKeyEvent = keyboard.getKeyEvents().get(keyboard.getKeyEvents().size() - 1);
-
-			if (isValidDirection(lastKeyEvent, snake)) {
-				snake.setMovingDirection(getDirectionForKey(lastKeyEvent));
-				
+			for (int i = keyboard.getKeyEvents().size() - 1; i >= 0; i--) {
+				Direction direction = getDirectionForKey(keyboard.getKeyEvents().get(i));
+				if (isValidDirection(direction, snake)) {
+					snake.setMovingDirection(direction);
+					break;
+				}
 			}
 		}
 	}
 
-	private boolean isValidDirection(int keyEvent, Snake snake) {
-		Direction newDirection = getDirectionForKey(keyEvent);
+	private boolean isValidDirection(Direction newDirection, Snake snake) {
 		if (newDirection != null) {
 			if (snake.getMovingDirection() == Direction.left) {
 				return newDirection != Direction.right;
@@ -37,7 +37,8 @@ public class SnakeController {
 				return newDirection != Direction.up;
 			}
 		}
-		 else {
+
+		else {
 			return false;
 		}
 	}
