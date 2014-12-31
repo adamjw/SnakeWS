@@ -24,7 +24,7 @@ import snake.game.state.Snake;
 public class SnakeGame {
 
 	// Constants
-	private static final int FRAMES_PER_MOVE = 6;
+	private static final int FRAMES_PER_MOVE = 10;
 	private static final int HEADER_HEIGHT = 36;
 	private static final int CELL_SIZE = 24;
 	private static final int NUMBER_OF_CELLS = 15;
@@ -143,6 +143,12 @@ public class SnakeGame {
 				snakeController.updateMovingDirection(bufferedKeyboard, snake);
 				snakeController.move(snake);
 				bufferedKeyboard.clear();
+				if (collisionController.isCollidingWithFruit(snake, fruit)) {
+					fruitController.moveFruit(snake.getSegments(), board, fruit);
+					fruitController.recolourFruit(fruit);
+					snake.addSegment();
+				}
+
 			}
 		}
 	}
