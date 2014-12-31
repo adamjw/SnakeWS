@@ -60,7 +60,7 @@ public class Snake {
 	}
 
 	public void addSegment() {
-		this.segments.add(this.getSegment(this.getSegments().size()-1));
+		segments.add(getSegment(segments.size()-1));
 	}
 
 	public Direction getMovingDirection() {

@@ -143,12 +143,11 @@ public class SnakeGame {
 				snakeController.updateMovingDirection(bufferedKeyboard, snake);
 				snakeController.move(snake);
 				bufferedKeyboard.clear();
-			}
-			
-			if (collisionController.isCollidingWithFruit(snake, fruit)) {
-				fruitController.moveFruit(snake.getSegments(), board, fruit);
-				fruitController.recolourFruit(fruit);
-				snake.addSegment();
+				if (collisionController.isCollidingWithFruit(snake, fruit)) {
+					fruitController.moveFruit(snake.getSegments(), board, fruit);
+					fruitController.recolourFruit(fruit);
+					snake.addSegment();
+				}
 
 			}
 		}

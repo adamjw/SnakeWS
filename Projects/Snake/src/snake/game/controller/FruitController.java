@@ -19,13 +19,16 @@ public class FruitController {
 		 * The fruit should not be moved to an occupied space. Use of the Random
 		 * object may help.
 		 */
+		
+		
 		Position newPosition = new Position((int) (Math.random() * board.getNumberOfColumns()),
 				(int) (Math.random() * board.getNumberOfRows()));
-
-		for (Position newPos = newPosition; !(occupiedSpaces.contains(newPos)); newPos = new Position(
-				(int) (Math.random() * board.getNumberOfColumns()), (int) (Math.random() * board.getNumberOfRows()))) {
-			fruit.setPosition(newPos);
+		
+		while (occupiedSpaces.contains(newPosition)) {
+			newPosition = new Position(
+					(int) (Math.random() * board.getNumberOfColumns()), (int) (Math.random() * board.getNumberOfRows()));
 		}
+		fruit.setPosition(newPosition);
 	}
 
 	public void recolourFruit(Fruit fruit) {
@@ -34,9 +37,7 @@ public class FruitController {
 		 * object and the Random object (if it pleases you) to change the given
 		 * fruit's colour.
 		 */
-		Colour newColour = new Colour((int) (Math.random() * 255), 5 + (int) (Math.random() * 250),
-				5 + (int) (Math.random() * 250), 5 + (int) (Math.random() * 250));
-		fruit.setColour(newColour);
+		fruit.setColour(Colour.getRandomColour(50, 5, 0, 0));
 
 	}
 
