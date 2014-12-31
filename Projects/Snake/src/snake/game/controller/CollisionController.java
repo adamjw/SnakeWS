@@ -14,8 +14,7 @@ public class CollisionController {
 	 * @return true if the snake is colliding with the fruit, false otherwise
 	 */
 	public boolean isCollidingWithFruit(Snake snake, Fruit fruit){
-
-		return false;
+		return fruit.getPosition().equals(snake.getHeadPosition());
 	}
 	
 
