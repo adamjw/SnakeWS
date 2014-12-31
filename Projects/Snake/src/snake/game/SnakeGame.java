@@ -148,19 +148,12 @@ public class SnakeGame {
 					snake.addSegment();
 				}
 				snakeController.move(snake);
-				if (collisionController.isMoveValid(board, snake)) {
+				if (!collisionController.isMoveValid(board, snake)) {
+					gameInfo.setState(GameInfo.GameState.DEAD);
 				}
-					else {
-						gameInfo.setState(GameInfo.GameState.DEAD);
-						
-						
-					}
-				}
-				
-
 			}
 		}
-	
+	}
 
 	private void updateScreen() {
 		boardDrawer.drawBoard(board);

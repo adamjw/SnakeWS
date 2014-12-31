@@ -30,13 +30,14 @@ public class CollisionController {
 	 */
 	public boolean isMoveValid(Board board, Snake snake) {
 		
-		int boardSize = board.getNumberOfColumns() - 1;
+		int maxColNum = board.getNumberOfColumns() - 1;
+		int maxRowNum = board.getNumberOfRows() - 1;
 		
 		Position headPos = snake.getHeadPosition();
 		int headPosX = headPos.getX();
 		int headPosY = headPos.getY();
-		boolean withinX = 0 <= headPosX && headPosX <= boardSize;
-		boolean withinY = 0 <= headPosY && headPosY <= boardSize;
+		boolean withinX = 0 <= headPosX && headPosX <= maxColNum;
+		boolean withinY = 0 <= headPosY && headPosY <= maxRowNum;
 		boolean withinBoard = withinX && withinY;
 		
 		List<Position> snakeSegments = snake.getSegments();
