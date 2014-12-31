@@ -1,5 +1,8 @@
 package snake.game.controller;
 
+import java.util.List;
+
+import simpleio.common.Position;
 import snake.game.state.Board;
 import snake.game.state.Fruit;
 import snake.game.state.Snake;
@@ -26,8 +29,21 @@ public class CollisionController {
 	 * @return true if the snake is allowed to move there, false otherwise (game over).
 	 */
 	public boolean isMoveValid(Board board, Snake snake) {
+		
+		int boardSize = board.getNumberOfColumns() - 1;
+		
+		Position headPos = snake.getHeadPosition();
+		int headPosX = headPos.getX();
+		int headPosY = headPos.getY();
+		boolean withinX = 0 <= headPosX && headPosX <= boardSize;
+		boolean withinY = 0 <= headPosY && headPosY <= boardSize;
+		boolean withinBoard = withinX && withinY;
+		
+		List<Position> snakeSegments = snake.getSegments();
+		List<Position> body = snakeSegments.subList(1, snakeSegments.size() - 1);
+		boolean bodyContainsHead = body.contains(headPos);
 	
-		return true;
+		return withinBoard && !bodyContainsHead;
 	}
 	
 }

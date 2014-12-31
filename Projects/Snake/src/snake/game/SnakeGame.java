@@ -141,17 +141,26 @@ public class SnakeGame {
 
 			if (gameInfo.getFrame() % gameInfo.getFramesPerMove() == 0) {
 				snakeController.updateMovingDirection(bufferedKeyboard, snake);
-				snakeController.move(snake);
 				bufferedKeyboard.clear();
 				if (collisionController.isCollidingWithFruit(snake, fruit)) {
 					fruitController.moveFruit(snake.getSegments(), board, fruit);
 					fruitController.recolourFruit(fruit);
 					snake.addSegment();
 				}
+				snakeController.move(snake);
+				if (collisionController.isMoveValid(board, snake)) {
+				}
+					else {
+						gameInfo.setState(GameInfo.GameState.DEAD);
+						
+						
+					}
+				}
+				
 
 			}
 		}
-	}
+	
 
 	private void updateScreen() {
 		boardDrawer.drawBoard(board);
