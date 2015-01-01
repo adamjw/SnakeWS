@@ -1,6 +1,5 @@
 package snake.game.drawer;
 
-import simpleio.common.Colour;
 import snake.game.state.Fruit;
 
 public class FruitDrawer {
@@ -12,7 +11,7 @@ public class FruitDrawer {
 	}
 
 	public void drawFruit(Fruit fruit) {
-		boardDrawer.drawSquare(Colour.RED, fruit.getPosition());
+		boardDrawer.drawSquare(fruit.getColour(), fruit.getPosition());
 
 	}
 
