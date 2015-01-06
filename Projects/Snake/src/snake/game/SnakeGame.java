@@ -30,6 +30,7 @@ public class SnakeGame {
 	private static final int NUMBER_OF_CELLS = 15;
 	private static final int WINDOW_WIDTH = CELL_SIZE * NUMBER_OF_CELLS;
 	private static final int WINDOW_HEIGHT = CELL_SIZE * NUMBER_OF_CELLS + HEADER_HEIGHT;
+	private int highScore = 0;
 
 	// IO
 	private Window window;
@@ -127,7 +128,7 @@ public class SnakeGame {
 		// dead state
 		if (gameInfo.getState() == GameInfo.GameState.DEAD) {
 			stateController.changeState(bufferedKeyboard, gameInfo);
-			gameInfo.setScore(0);
+			highScore = gameInfo.getHighScore();
 
 		}
 
@@ -135,6 +136,7 @@ public class SnakeGame {
 		if (gameInfo.getState() == GameInfo.GameState.RESTARTING) {
 			initializeState();
 			stateController.setState(GameInfo.GameState.NOT_STARTED, gameInfo);
+			gameInfo.setHighScore(highScore);
 		}
 
 		// playing state
