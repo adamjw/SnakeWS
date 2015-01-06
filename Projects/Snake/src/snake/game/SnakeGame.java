@@ -91,14 +91,14 @@ public class SnakeGame {
 		fruit = new Fruit();
 		board = new Board(NUMBER_OF_CELLS, NUMBER_OF_CELLS);
 		snake = new Snake(Direction.right, new Position(NUMBER_OF_CELLS / 2, NUMBER_OF_CELLS / 2), 3);
-		gameInfo = new GameInfo("THIS IS SNAKE", FRAMES_PER_MOVE);
+		gameInfo = new GameInfo("Snake", FRAMES_PER_MOVE);
 	}
 
 	private void initializeDrawers() {
 		boardDrawer = new BoardDrawer(window, new Point(0, HEADER_HEIGHT), CELL_SIZE);
 		snakeDrawer = new SnakeDrawer(boardDrawer);
 		fruitDrawer = new FruitDrawer(boardDrawer);
-		gameInfoDrawer = new GameInfoDrawer(gameInfo, window, new Point(0, 0));
+		gameInfoDrawer = new GameInfoDrawer(window, new Point(0, 0));
 	}
 
 	private void initializeControllers() {
@@ -127,6 +127,8 @@ public class SnakeGame {
 		// dead state
 		if (gameInfo.getState() == GameInfo.GameState.DEAD) {
 			stateController.changeState(bufferedKeyboard, gameInfo);
+			gameInfo.setScore(0);
+
 		}
 
 		// restarting state
@@ -140,15 +142,22 @@ public class SnakeGame {
 			gameInfoController.incrementFrame(gameInfo);
 
 			if (gameInfo.getFrame() % gameInfo.getFramesPerMove() == 0) {
+
 				snakeController.updateMovingDirection(bufferedKeyboard, snake);
 				bufferedKeyboard.clear();
-				if (collisionController.isCollidingWithFruit(snake, fruit)) {
-					fruitController.moveFruit(snake.getSegments(), board, fruit);
-					fruitController.recolourFruit(fruit);
-					snake.addSegment();
+
+				if (collisionController.isMoveValid(board, snake)) {
+					snakeController.move(snake);
+
+					if (collisionController.isCollidingWithFruit(snake, fruit)) {
+						fruitController.moveFruit(snake.getSegments(), board, fruit);
+						fruitController.recolourFruit(fruit);
+						snake.addSegment();
+						gameInfoController.addScore(10, gameInfo);
+					}
 				}
-				snakeController.move(snake);
-				if (!collisionController.isMoveValid(board, snake)) {
+
+				else {
 					gameInfo.setState(GameInfo.GameState.DEAD);
 				}
 			}
@@ -160,10 +169,10 @@ public class SnakeGame {
 		fruitDrawer.drawFruit(fruit);
 		snakeDrawer.drawSnake(snake);
 
-		gameInfoDrawer.drawTitle();
-		gameInfoDrawer.drawMessage();
-		gameInfoDrawer.drawScore();
-		gameInfoDrawer.drawHighScore();
+		gameInfoDrawer.drawTitle(gameInfo);
+		gameInfoDrawer.drawMessage(gameInfo);
+		gameInfoDrawer.drawScore(gameInfo);
+		gameInfoDrawer.drawHighScore(gameInfo);
 
 	}
 }
