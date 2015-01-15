@@ -59,6 +59,10 @@ public class GameInfo {
 		return highScore;
 	}
 	
+	public void setHighScore(int highScore){
+		this.highScore = highScore;
+	}
+	
 	public int getFrame(){
 		return currentFrame;
 	}

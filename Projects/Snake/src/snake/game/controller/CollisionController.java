@@ -16,35 +16,36 @@ public class CollisionController {
 	 * @param fruit
 	 * @return true if the snake is colliding with the fruit, false otherwise
 	 */
-	public boolean isCollidingWithFruit(Snake snake, Fruit fruit){
+	public boolean isCollidingWithFruit(Snake snake, Fruit fruit) {
 		return fruit.getPosition().equals(snake.getHeadPosition());
 	}
-	
 
 	/**
 	 * Checks if the space that the snake is about to move to is valid.
 	 * 
 	 * @param board
 	 * @param snake
-	 * @return true if the snake is allowed to move there, false otherwise (game over).
+	 * @return true if the snake is allowed to move there, false otherwise (game
+	 *         over).
 	 */
 	public boolean isMoveValid(Board board, Snake snake) {
-		
+
 		int maxColNum = board.getNumberOfColumns() - 1;
 		int maxRowNum = board.getNumberOfRows() - 1;
 		
-		Position headPos = snake.getHeadPosition();
-		int headPosX = headPos.getX();
-		int headPosY = headPos.getY();
-		boolean withinX = 0 <= headPosX && headPosX <= maxColNum;
-		boolean withinY = 0 <= headPosY && headPosY <= maxRowNum;
-		boolean withinBoard = withinX && withinY;
+		Position nextHeadPos = snake.getHeadPosition().translate(snake.getMovingDirection(), 1);
 		
+		int nextHeadPosX = nextHeadPos.getX();
+		int nextHeadPosY = nextHeadPos.getY();
+		boolean withinX = 0 <= nextHeadPosX && nextHeadPosX <= maxColNum;
+		boolean withinY = 0 <= nextHeadPosY && nextHeadPosY <= maxRowNum;
+		boolean withinBoard = withinX && withinY;
+
 		List<Position> snakeSegments = snake.getSegments();
 		List<Position> body = snakeSegments.subList(1, snakeSegments.size() - 1);
-		boolean bodyContainsHead = body.contains(headPos);
-	
+		boolean bodyContainsHead = body.contains(nextHeadPos);
+
 		return withinBoard && !bodyContainsHead;
 	}
-	
+
 }

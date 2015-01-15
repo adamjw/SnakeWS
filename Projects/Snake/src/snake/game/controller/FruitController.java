@@ -3,7 +3,6 @@ package snake.game.controller;
 import java.util.List;
 
 import simpleio.common.Colour;
-import simpleio.common.Point;
 import simpleio.common.Position;
 import snake.game.state.Board;
 import snake.game.state.Fruit;

@@ -9,25 +9,23 @@ import snake.game.state.GameInfo;
 
 public class GameInfoDrawer {
 
-	private GameInfo info;
 	private Window window;
 	private Point upperLeft;
 	
-	public GameInfoDrawer(GameInfo info, Window window, Point upperLeft){
-		this.info = info;
+	public GameInfoDrawer(Window window, Point upperLeft){
 		this.window = window;
 		this.upperLeft = upperLeft;
 	}
 	
-	public void drawTitle(){
+	public void drawTitle(GameInfo info){
 		window.drawString(Colour.WHITE, upperLeft, info.getTitle());
 	}
 	
-	public void drawMessage(){
+	public void drawMessage(GameInfo info){
 		window.drawString(Colour.WHITE, upperLeft.addY(12), info.getMessage());
 	}
 	
-	public void drawScore(){
+	public void drawScore(GameInfo info){
 		Point textPosition = upperLeft.addX(175);
 		Point scorePosition = upperLeft.addXY(175, 12);
 		
@@ -35,7 +33,7 @@ public class GameInfoDrawer {
 		window.drawString(Colour.WHITE, scorePosition, String.valueOf(info.getScore()));
 	}
 	
-	public void drawHighScore(){
+	public void drawHighScore(GameInfo info){
 		Point textPosition = upperLeft.addX(275);
 		Point scorePosition = upperLeft.addXY(275, 12);
 		
